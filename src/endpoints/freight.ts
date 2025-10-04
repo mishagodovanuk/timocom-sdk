@@ -1,4 +1,3 @@
-// src/endpoints/freight.ts
 import { TimocomHttp } from "../client";
 import type {
     GetFreightOffersRequest,
@@ -26,7 +25,6 @@ export class FreightApi {
             headers: { Accept: "application/json, application/problem+json" },
         });
 
-        // Your existing code expects { offers: [] }. Keep that contract:
         return data as GetFreightOffersResponse;
     }
 
@@ -57,7 +55,6 @@ export class FreightApi {
             {
                 params,
                 headers: { Accept: "application/json" },
-                // Expect 204; axios resolves with empty data. Errors handled by interceptor.
             }
         );
     }
@@ -71,6 +68,7 @@ export class FreightApi {
             params: { timocom_id },
             headers: { Accept: "application/json, application/problem+json" },
         });
+
         return data as ListMyFreightOffersResponse;
     }
 
@@ -78,17 +76,19 @@ export class FreightApi {
      * Publish Freight Offer
      * POST /freight-exchange/3/my-freight-offers
      */
-    async publish(body: PublishFreightOfferRequest): Promise<PublishFreightOfferResponse> {
+    async publish(body: PublishFreightOfferRequest,   params?: { timocom_id?: number }): Promise<PublishFreightOfferResponse> {
         const { data } = await this.http.ax.post(
             `/freight-exchange/3/my-freight-offers`,
             body,
             {
+                params,
                 headers: {
-                    Accept: "application/json, application/problem+json, application/vnd.freight-exchange.v3+json",
+                    Accept: "application/vnd.freight-exchange.v3+json, application/json, application/problem+json",
                     "Content-Type": "application/json",
                 },
             }
         );
+
         return data as PublishFreightOfferResponse;
     }
 }

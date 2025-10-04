@@ -3,18 +3,13 @@ import type { PublishFreightOfferRequest } from "../types/freight.js";
 
 (async () => {
   const timocomId = Number(process.env.TIMOCOM_ID);
+
   if (!timocomId) throw new Error("Set TIMOCOM_ID in env/.env");
 
   const sdk = new TimocomSDK();
 
-  // @ts-ignore
   const body: PublishFreightOfferRequest = {
-    objectType: "freightOffer",
     customer: { id: timocomId },
-    closedFreightExchangeSetting: {
-      closedFreightExchangeId: timocomId,
-      publicationType: "EXTERNAL_LATER",
-    },
     contactPerson: {
       title: "MR",
       firstName: "Fernández",
@@ -27,7 +22,7 @@ import type { PublishFreightOfferRequest } from "../types/freight.js";
       body: ["MOVING_FLOOR"],
       type: ["VEHICLE_UP_TO_12_T"],
     },
-    trackable: true,
+    trackable: false,
     acceptQuotes: true,
     freightDescription: "SDK sandbox test",
     length_m: 12.31,
@@ -46,12 +41,13 @@ import type { PublishFreightOfferRequest } from "../types/freight.js";
         latestLoadingDate: "2025-11-25",
       },
     ],
-    price: { amount: 1.5, currency: "EUR" },
+    price: { amount: 500, currency: "EUR" },
   };
 
-  const res = await sdk.freight.publish(body);
+  const res = await sdk.freight.publish(body, { timocom_id: timocomId });
   console.log(JSON.stringify(res, null, 2));
   const createdId = (res?.payload as any)?.id;
+
   if (createdId) {
     console.log("Created offer public ID:", createdId);
   } else {

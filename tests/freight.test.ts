@@ -1,4 +1,3 @@
-// tests/freight.test.ts
 import { describe, it, expect, vi } from "vitest";
 import { TimocomSDK } from "../src";
 import nock from "nock";

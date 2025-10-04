@@ -1,6 +1,3 @@
-// src/types/freight.ts
-
-/** Common TIMOCOM response envelope */
 export interface TimocomMeta {
     requestId?: string;
     responseTimestamp?: string;
@@ -12,10 +9,8 @@ export interface TimocomEnvelope<T> {
     payload: T;
 }
 
-/** ===== Generic building blocks ===== */
-
 export interface Money {
-    amount: number; // >= 0.01, 2 decimals typically
+    amount: number; // >= 0.01, 2 decimals
     currency:
         | "ALL" | "AMD" | "AZN" | "BAM" | "BGN" | "BYN" | "CHF" | "CZK" | "DKK"
         | "EUR" | "GBP" | "GEL" | "HRK" | "HUF" | "ISK" | "KZT" | "MDL" | "MKD"
@@ -59,7 +54,6 @@ export interface ContactPerson {
 export interface CustomerRef {
     /** TIMOCOM customer ID (required for publish) */
     id: number;
-    // Other fields are ignored by TIMOCOM on publish per spec
 }
 
 export interface VehicleProperties {
@@ -83,7 +77,6 @@ export interface GetFreightOffersRequest {
  */
 export interface FreightOffer {
     id: string;
-    // Extend as needed when you map fields from TIMOCOM search/list
 }
 export interface GetFreightOffersResponse {
     offers: FreightOffer[];
@@ -92,7 +85,6 @@ export interface GetFreightOffersResponse {
 /** ===== MY freight offers (“own” endpoints) ===== */
 
 export interface PublishFreightOfferRequest {
-    objectType: string;
     customer: CustomerRef;
     contactPerson: ContactPerson;
     vehicleProperties: VehicleProperties;
@@ -104,7 +96,7 @@ export interface PublishFreightOfferRequest {
     freightDescription: string; // 3..50 chars
     length_m: number;           // 0..99.99, step 0.01
     weight_t: number;           // 0..99.99, step 0.01
-    loadingPlaces: LoadingPlace[]; // 2..10, LOADING first, UNLOADING last
+    loadingPlaces: LoadingPlace[]; // LOADING first, UNLOADING last
 
     /** Optional fields */
     price?: Money;
@@ -134,8 +126,7 @@ export interface PublishFreightOfferResponsePayload {
 export type PublishFreightOfferResponse = TimocomEnvelope<PublishFreightOfferResponsePayload>;
 
 export interface MyFreightOfferPayload {
-    id: string; // publicOfferId
-    // include common fields you care about; keep flexible:
+    id: string;
     [k: string]: unknown;
 }
 export type GetMyFreightOfferResponse = TimocomEnvelope<MyFreightOfferPayload>;
