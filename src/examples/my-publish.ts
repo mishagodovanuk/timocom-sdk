@@ -23,7 +23,7 @@ import type { PublishFreightOfferRequest } from "../types/freight.js";
       type: ["VEHICLE_UP_TO_12_T"],
     },
     trackable: false,
-    acceptQuotes: true,
+    acceptQuotes: false,
     freightDescription: "SDK sandbox test",
     length_m: 12.31,
     weight_t: 5.55,

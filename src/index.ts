@@ -1,6 +1,7 @@
 import { loadEnv, resolveBaseUrl } from "./utils/env";
 import { TimocomHttp } from "./client";
 import { FreightApi } from "./endpoints/freight";
+import { VehicleSpaceApi } from "./endpoints/vehicle-space";
 
 export interface TimocomSdkConfig {
     env?: "sandbox" | "staging";
@@ -12,6 +13,7 @@ export interface TimocomSdkConfig {
 
 export class TimocomSDK {
     readonly freight: FreightApi;
+    readonly vehicle: VehicleSpaceApi;
 
     constructor(cfg?: TimocomSdkConfig) {
         const env = loadEnv();
@@ -23,6 +25,8 @@ export class TimocomSDK {
             password: cfg?.password ?? env.TIMOCOM_PASSWORD,
             timeoutMs: cfg?.timeoutMs ?? (env.TIMOCOM_TIMEOUT_MS ? +env.TIMOCOM_TIMEOUT_MS : undefined),
         });
+
+        this.vehicle = new VehicleSpaceApi(http);
 
         this.freight = new FreightApi(http);
     }
