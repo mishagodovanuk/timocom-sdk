@@ -57,7 +57,7 @@ export interface CustomerRef {
 }
 
 export interface VehicleProperties {
-    /** At least one */
+
     body: string[];
     /** Optional arrays */
     bodyProperty?: string[];
@@ -68,21 +68,16 @@ export interface VehicleProperties {
     type: string[];
 }
 
-/** ===== Your existing “lookup by external ids” (keep as-is in your code) ===== */
 export interface GetFreightOffersRequest {
     ids: string[];
 }
-/** You previously returned { offers: [] }. Keep that if you want, but TIMOCOM returns an envelope.
- * If you decide to migrate later, you can switch this to TimocomEnvelope<FreightOffer[]>.
- */
+
 export interface FreightOffer {
     id: string;
 }
 export interface GetFreightOffersResponse {
     offers: FreightOffer[];
 }
-
-/** ===== MY freight offers (“own” endpoints) ===== */
 
 export interface PublishFreightOfferRequest {
     customer: CustomerRef;

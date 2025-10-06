@@ -13,7 +13,6 @@ export class FreightApi {
     constructor(private http: TimocomHttp) {}
 
     /**
-     * External lookup by IDs (kept exactly as you had it)
      * GET /freight-exchange/3/freight-offers?ids=1,2,3
      */
     async getByIds(req: GetFreightOffersRequest): Promise<GetFreightOffersResponse> {
@@ -29,7 +28,6 @@ export class FreightApi {
     }
 
     /**
-     * Lookup Your Own Freight Offer
      * GET /freight-exchange/3/my-freight-offers/{publicOfferId}?timocom_id=...
      */
     async getOwnById(publicOfferId: string, timocom_id: number): Promise<GetMyFreightOfferResponse> {
@@ -44,7 +42,6 @@ export class FreightApi {
     }
 
     /**
-     * Withdraw Your Freight Offer
      * DELETE /freight-exchange/3/my-freight-offers/{publicOfferId}
      * - 204 No Content on success
      * - optional accepted_freight_quote_id
@@ -60,7 +57,6 @@ export class FreightApi {
     }
 
     /**
-     * Lookup Your Own Freight Offers (all currently published for the authorized timocom_id)
      * GET /freight-exchange/3/my-freight-offers?timocom_id=...
      */
     async listOwn(timocom_id: number): Promise<ListMyFreightOffersResponse> {
