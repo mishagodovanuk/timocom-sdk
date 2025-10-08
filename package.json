@@ -16,7 +16,7 @@
     "build": "tsup src/index.ts src/examples/my-list.ts src/examples/my-get-one.ts src/examples/my-publish.ts src/examples/my-withdraw.ts src/examples/vehicle-list-own.ts src/examples/vehicle-get-own.ts src/examples/vehicle-publish.ts src/examples/vehicle-withdraw.ts --format esm,cjs --dts",
     "test": "vitest run",
     "lint": "eslint .",
-    "dev": "node -r dotenv/config dist/examples/run.js"
+    "dev": "node -r dotenv/config dist/examples/my-list.js"
   },
   "dependencies": {
     "axios": "^1.12.2",

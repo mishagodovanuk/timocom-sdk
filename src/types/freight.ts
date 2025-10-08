@@ -18,12 +18,12 @@ export interface Money {
 }
 
 export interface Address {
-    country: string;   // ISO-3166-1 alpha-2
-    city: string;
-    postalCode?: string;
-    street?: string;
-    houseNumber?: string;
-    objectType: string;
+  objectType: string;
+  country: string; // ISO-3166-1 alpha-2
+  city: string;
+  postalCode?: string;
+  street?: string;
+  houseNumber?: string;
 }
 
 export type LoadingType = "LOADING" | "UNLOADING";
@@ -36,9 +36,9 @@ export interface LoadingPlace {
     /** HH:mm */
     endTime?: string;
     /** YYYY-MM-DD */
-    earliestLoadingDate?: string;
+    earliestLoadingDate: string;
     /** YYYY-MM-DD */
-    latestLoadingDate?: string;
+    latestLoadingDate: string;
 }
 
 export interface ContactPerson {
@@ -82,17 +82,17 @@ export interface GetFreightOffersResponse {
 
 export interface PublishFreightOfferRequest {
     objectType: string;
-    customer: CustomerRef;
+    customer?: CustomerRef;
     contactPerson: ContactPerson;
     vehicleProperties: VehicleProperties;
     /** True/false per spec */
-    trackable: boolean;
+    trackable?: boolean;
     /** True/false per spec */
-    acceptQuotes: boolean;
+    acceptQuotes?: boolean;
 
-    freightDescription: string; // 3..50 chars
-    length_m: number;           // 0..99.99, step 0.01
-    weight_t: number;           // 0..99.99, step 0.01
+    freightDescription?: string; // 3..50 chars
+    length_m?: number;           // 0..99.99, step 0.01
+    weight_t?: number;           // 0..99.99, step 0.01
     loadingPlaces: LoadingPlace[]; // LOADING first, UNLOADING last
 
     /** Optional fields */

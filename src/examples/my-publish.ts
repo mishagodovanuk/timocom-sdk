@@ -23,24 +23,38 @@ import type { PublishFreightOfferRequest } from "../types/freight.js";
       body: ["MOVING_FLOOR"],
       type: ["VEHICLE_UP_TO_12_T"],
     },
-    trackable: false,
-    acceptQuotes: false,
-    freightDescription: "SDK sandbox test",
+    // trackable: false,
+    // acceptQuotes: false,
+    // freightDescription: "SDK sandbox test",
     length_m: 12.31,
     weight_t: 5.55,
     loadingPlaces: [
       {
         loadingType: "LOADING",
-        address: { objectType: "address", city: "Gerona", country: "ES", postalCode: "17001" },
-        startTime: "2025-11-25"
+        address: {
+          objectType: "address",
+          city: "Gerona",
+          country: "ES",
+          // postalCode: "17001"
+        },
+        // startTime: "08:15",
+        earliestLoadingDate: "2025-10-10",
+        latestLoadingDate: "2025-10-10",
       },
       {
         loadingType: "UNLOADING",
-        address: { objectType: "address", city: "Gerona", country: "ES", postalCode: "17001" },
-        startTime: "2025-11-25"
+        address: {
+          objectType: "address",
+          city: "Gerona",
+          country: "ES",
+          // postalCode: "17001"
+        },
+        // startTime: "08:25",
+        earliestLoadingDate: "2025-10-11",
+        latestLoadingDate: "2025-10-11",
       },
     ],
-    price: { amount: 500, currency: "EUR" },
+    // price: { amount: 500, currency: "EUR" },
   };
 
   const res = await sdk.freight.publish(body, { timocom_id: timocomId });
