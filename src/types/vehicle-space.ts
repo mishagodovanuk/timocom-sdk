@@ -12,6 +12,7 @@ export interface VehicleSpaceProperties {
 }
 
 export interface PublishVehicleSpaceOfferRequest {
+    objectType: string;
     customer: CustomerRef;            // { id: timocomId }
     contactPerson: ContactPerson;
     vehicleProperties: VehicleSpaceProperties;

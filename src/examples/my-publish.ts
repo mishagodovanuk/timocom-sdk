@@ -10,6 +10,7 @@ import type { PublishFreightOfferRequest } from "../types/freight.js";
 
   const body: PublishFreightOfferRequest = {
     customer: { id: timocomId },
+    objectType: "freightOffer",
     contactPerson: {
       title: "MR",
       firstName: "Fernández",
@@ -30,15 +31,13 @@ import type { PublishFreightOfferRequest } from "../types/freight.js";
     loadingPlaces: [
       {
         loadingType: "LOADING",
-        address: { city: "Gerona", country: "ES", postalCode: "17001" },
-        earliestLoadingDate: "2025-11-24",
-        latestLoadingDate: "2025-11-24",
+        address: { objectType: "address", city: "Gerona", country: "ES", postalCode: "17001" },
+        startTime: "2025-11-25"
       },
       {
         loadingType: "UNLOADING",
-        address: { city: "Gerona", country: "ES", postalCode: "17001" },
-        earliestLoadingDate: "2025-11-25",
-        latestLoadingDate: "2025-11-25",
+        address: { objectType: "address", city: "Gerona", country: "ES", postalCode: "17001" },
+        startTime: "2025-11-25"
       },
     ],
     price: { amount: 500, currency: "EUR" },

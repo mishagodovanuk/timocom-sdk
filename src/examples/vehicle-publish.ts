@@ -16,6 +16,7 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10);
 
     const body: PublishVehicleSpaceOfferRequest = {
         customer: { id: timocomId },
+        objectType: "freightOffer",
         contactPerson: {
             title: "MR",
             firstName: "Jorge",
@@ -29,16 +30,21 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10);
         },
         trackable: false,
         acceptQuotes: true,
+        internalRemark: "This remark is visible to users of your company, only",
+        publicRemark: "This remark is visible to all",
+        logisticsDocumentTypes: [
+            "string"
+        ],
         loadingPlaces: [
             {
                 loadingType: "LOADING",
-                address: { city: "Valencia", country: "ES", postalCode: "46001" },
+                address: { objectType: "address", city: "Valencia", country: "ES", postalCode: "46001" },
                 earliestLoadingDate: fmt(d1),
                 latestLoadingDate:   fmt(d2),
             },
             {
                 loadingType: "UNLOADING",
-                address: { city: "Solingen", country: "DE", postalCode: "42697" },
+                address: { objectType: "address", city: "Solingen", country: "DE", postalCode: "42697" },
                 earliestLoadingDate: fmt(d3),
                 latestLoadingDate:   fmt(d4),
             },

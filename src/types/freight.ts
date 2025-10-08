@@ -23,6 +23,7 @@ export interface Address {
     postalCode?: string;
     street?: string;
     houseNumber?: string;
+    objectType: string;
 }
 
 export type LoadingType = "LOADING" | "UNLOADING";
@@ -35,9 +36,9 @@ export interface LoadingPlace {
     /** HH:mm */
     endTime?: string;
     /** YYYY-MM-DD */
-    earliestLoadingDate: string;
+    earliestLoadingDate?: string;
     /** YYYY-MM-DD */
-    latestLoadingDate: string;
+    latestLoadingDate?: string;
 }
 
 export interface ContactPerson {
@@ -80,6 +81,7 @@ export interface GetFreightOffersResponse {
 }
 
 export interface PublishFreightOfferRequest {
+    objectType: string;
     customer: CustomerRef;
     contactPerson: ContactPerson;
     vehicleProperties: VehicleProperties;
